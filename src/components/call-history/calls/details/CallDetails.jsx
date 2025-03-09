@@ -35,6 +35,8 @@ const CallDetails = ({ open, idCall }) => {
       return getHumanTimeFromSeconds(val);
     } else if (label === infoToDisplay[1].label) {
       return formatPhoneNumber(val);
+    } else if (label === infoToDisplay[2].label) {
+      return formatPhoneNumber(val);
     }
     return val;
   };
