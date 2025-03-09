@@ -1,0 +1,24 @@
+.dvder-main {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0 0 0;
+}
+.dvder-sides {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.dvder-dots {
+  display: flex;
+  height: 1px;
+  width: 100%;
+  border-top: 2px dotted var(--grey-light);
+}
+.dvder-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--grey-main);
+  font-weight: 600;
+}

@@ -1,0 +1,18 @@
+.cll-det-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 2px 10px 0px 60px;
+}
+.cll-det-info {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+}
+.cll-det-lab {
+  color: var(--grey-dark);
+}
+.cll-det-val {
+  color: var(--grey-darkest);
+  font-weight: 500;
+}

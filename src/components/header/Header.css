@@ -1,0 +1,48 @@
+header {
+  height: 40px;
+  border-bottom: 1px solid var(--grey-main);
+  margin-top: 5px;
+}
+.hd-menu {
+  display: flex;
+  height: 100%;
+}
+.hd-menu-logo {
+  width: 135px;
+  height: calc(100% - 10px);
+  background-color: #fff;
+  padding: 3px 0 7px 10px;
+  position: relative;
+}
+.hd-menu-logo:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 40px 40px;
+  border-color: transparent transparent var(--grey-lightest) transparent;
+}
+.hd-menu-logo:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 22px);
+  height: 40px;
+  border-bottom: 1px solid var(--grey-main);
+  border-right: 1px solid var(--grey-main);
+  -moz-transform: skew(-45deg);
+  -webkit-transform: skew(-45deg);
+  transform: skew(-45deg);
+}
+.hd-menu-logo > svg {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
