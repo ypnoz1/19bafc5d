@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AxiosInstance, { baseApiUrl } from "../../../../api/AxiosInstance.js";
 import { getHumanTimeFromSeconds } from "../../../../utils/Time.utils.jsx";
 import { formatPhoneNumber } from "../../../../utils/Phone.utils.jsx";
+import LoaderDots from "../../../loader/dots/LoaderDots.jsx";
 import "./CallDetails.css";
 
 const CallDetails = ({ open, idCall }) => {
@@ -50,7 +51,15 @@ const CallDetails = ({ open, idCall }) => {
         </div>
       ))}
     </div>
-  ) : null;
+  ) : (
+    <>
+      {open && loading && (
+        <div style={{ paddingLeft: "60px", height: "56px" }}>
+          <LoaderDots isSaving={loading} />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default CallDetails;
