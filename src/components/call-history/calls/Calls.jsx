@@ -6,21 +6,15 @@ import LoaderWaves from "../../loader/waves/LoaderWaves.jsx";
 import MenuContext from "../../../context/menu/MenuContext.jsx";
 import AlertNoData from "../../alert/no-data/AlertNoData.jsx";
 import CallDetails from "./details/CallDetails.jsx";
-import {
-  getCaller,
-  groupCallsByDate,
-  callTypeIcon,
-  callDirectionIcon,
-  callDirectionFormat,
-} from "../../../utils/Phone.utils.jsx";
-import { getHourMinuteFromDate } from "../../../utils/Time.utils.jsx";
+import CallAvatar from "./avatar/CallAvatar.jsx";
+import CallInfo from "./info/CallInfo.jsx";
+import CallTime from "./time/CallTime.jsx";
+import { groupCallsByDate } from "../../../utils/Phone.utils.jsx";
 import { MenuLabel } from "../../../constants/menu.jsx";
 import {
-  isSelected,
   isSelectedAll,
   toggleCheckBoxUtils,
   selectAll,
-  checkBoxIconStyle,
   hasData,
 } from "./Calls.utils.jsx";
 import "./Calls.css";
@@ -103,66 +97,27 @@ const Calls = () => {
                         {index === 0 && <Divider label={key} />}
                         <div className="cll-elems">
                           <div className="cll-elem">
-                            <div
-                              className="cll-elem-icn"
-                              onClick={() =>
-                                toggleCheckBox(
-                                  call.id,
-                                  Object.hasOwn(call, "idLogs")
-                                    ? call.idLogs
-                                    : []
+                            <CallAvatar
+                              call={call}
+                              callToArchive={callToArchive}
+                              toggleCheckBox={toggleCheckBox}
+                            />
+                            <CallInfo
+                              call={call}
+                              callBackSelectedCall={(idCall) =>
+                                setCallDetails(
+                                  callDetails === idCall ? "" : idCall
                                 )
                               }
-                            >
-                              {!isSelected(call.id, callToArchive) &&
-                                callTypeIcon(call.call_type)}
-                              <div
-                                id="cll-selector-elem"
-                                style={
-                                  isSelected(call.id, callToArchive)
-                                    ? { display: "flex" }
-                                    : {}
-                                }
-                              >
-                                {checkBoxIconStyle(call.id, callToArchive)}
-                              </div>
-                            </div>
-                            <div
-                              className="cll-elem-txt"
-                              onClick={() => {
+                            />
+                            <CallTime
+                              call={call}
+                              callBackSelectedCall={(idCall) =>
                                 setCallDetails(
-                                  callDetails === call.id ? "" : call.id
-                                );
-                              }}
-                            >
-                              <div className="cll-elem-txt-cller">
-                                {getCaller(call.from)}
-                                {Object.hasOwn(call, "fromLogs") && (
-                                  <div className="cll-elem-txt-cller-count">
-                                    {call.fromLogs.length + 1}
-                                  </div>
-                                )}
-                              </div>
-                              <div className="cll-elem-txt-type">
-                                {callDirectionIcon(
-                                  call.direction,
-                                  call.call_type
-                                )}
-                                <span>
-                                  {callDirectionFormat(call.direction)}
-                                </span>
-                              </div>
-                            </div>
-                            <div
-                              className="cll-elem-txt-time"
-                              onClick={() => {
-                                setCallDetails(
-                                  callDetails === call.id ? "" : call.id
-                                );
-                              }}
-                            >
-                              {getHourMinuteFromDate(call.created_at)}
-                            </div>
+                                  callDetails === idCall ? "" : idCall
+                                )
+                              }
+                            />
                           </div>
                           <CallDetails
                             open={callDetails === call.id}

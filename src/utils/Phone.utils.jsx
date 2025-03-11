@@ -5,6 +5,7 @@ import VoicemailOutlinedIcon from "@mui/icons-material/VoicemailOutlined";
 import CallMadeOutlinedIcon from "@mui/icons-material/CallMadeOutlined";
 import CallReceivedOutlinedIcon from "@mui/icons-material/CallReceivedOutlined";
 import { listContacts } from "../constants/contacts.jsx";
+import { PhoneLabel } from "../constants/phoneText.jsx";
 
 export const formatPhoneNumber = (phoneNumberString) => {
   var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
@@ -24,21 +25,23 @@ export const getCaller = (from) => {
 
 export const callTypeIcon = (callType) => {
   let icon = <VoicemailOutlinedIcon />;
-  if (callType === "missed") {
+  if (callType === PhoneLabel.MISSED) {
     icon = <PhoneMissedOutlinedIcon />;
-  } else if (callType === "answered") {
+  } else if (callType === PhoneLabel.ANSWERED) {
     icon = <PhoneCallbackOutlinedIcon />;
   }
   return <div id="cll-icn-elem">{icon}</div>;
 };
 
 export const callDirectionFormat = (direction) =>
-  direction === "inbound" ? "Incoming call" : "Outgoing call";
+  direction === PhoneLabel.INBOUND
+    ? PhoneLabel.INCOMING_CALL
+    : PhoneLabel.OUTGOING_CALL;
 
 export const callDirectionIcon = (direction, callType) => {
-  const color = callType === "answered" ? {} : { color: "#C64646" };
+  const color = callType === PhoneLabel.ANSWERED ? {} : { color: "#C64646" };
   const icon =
-    direction === "inbound" ? (
+    direction === PhoneLabel.INBOUND ? (
       <CallReceivedOutlinedIcon sx={{ fontSize: "14px", ...color }} />
     ) : (
       <CallMadeOutlinedIcon sx={{ fontSize: "14px", ...color }} />

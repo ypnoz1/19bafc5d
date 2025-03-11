@@ -8,8 +8,7 @@ const Menu = () => {
 
   const disableAhref = (e) => e.preventDefault();
 
-  const changeTab = (e, idMenu) => {
-    e.preventDefault();
+  const changeTab = (idMenu) => {
     activateMenu(idMenu);
   };
 
@@ -22,7 +21,7 @@ const Menu = () => {
             className={
               m.active ? "hd-menu-ul-li hd-menu-ul-li-on" : "hd-menu-ul-li"
             }
-            onClick={(e) => changeTab(e, m.id)}
+            onClick={() => changeTab(m.id)}
           >
             <a href="" onClick={disableAhref}>
               {m.label}
