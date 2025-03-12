@@ -50,7 +50,7 @@ const Archiver = ({
           <div
             className="achv-x"
             onClick={callBackToggleSelectAll}
-            title={isSelectedAll ? "All have been selected" : "Select all"}
+            title={isSelectedAll ? "Unselect all" : "Select all"}
           >
             {isSelectedAll ? (
               <CheckBoxOutlinedIcon />
