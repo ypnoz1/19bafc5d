@@ -43,15 +43,16 @@ const Calls = () => {
     setCountSelected(0);
     setCallToArchive([]);
     setCallHistory([]);
-    AxiosInstance.get(`${baseApiUrl}/activities`).then((res) => {
-      const archived = activeLabel === MenuLabel.ARCHIVE;
-      const filterResult = res.filter((r) => r.is_archived === archived);
-      filterResult.sort(
-        (a, b) => new Date(b.created_at) - new Date(a.created_at)
-      );
-      setCallHistory(groupCallsByDate(filterResult));
-      setIsLoading(false);
-    });
+    AxiosInstance.get(`${baseApiUrl}/activities`)
+      .then((res) => {
+        const archived = activeLabel === MenuLabel.ARCHIVE;
+        const filterResult = res.filter((r) => r.is_archived === archived);
+        filterResult.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+        setCallHistory(groupCallsByDate(filterResult));
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const toggleCheckBox = (idCall, idLogs) =>

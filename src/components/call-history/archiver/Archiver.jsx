@@ -35,10 +35,11 @@ const Archiver = ({
           })
         );
       });
-      Promise.all(promises).then((values) => {
-        callBackRefresh();
-        setIsSaving(false);
-      });
+      Promise.all(promises)
+        .then((values) => {
+          callBackRefresh();
+        })
+        .finally(() => setIsSaving(false));
     }
   };
 

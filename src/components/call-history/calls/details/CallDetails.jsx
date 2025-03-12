@@ -25,10 +25,11 @@ const CallDetails = ({ open, idCall }) => {
 
   const getCallDetails = () => {
     setLoading(true);
-    AxiosInstance.get(`${baseApiUrl}/activities/${idCall}`).then((res) => {
-      setDetails(res);
-      setLoading(false);
-    });
+    AxiosInstance.get(`${baseApiUrl}/activities/${idCall}`)
+      .then((res) => {
+        setDetails(res);
+      })
+      .finally(() => setLoading(false));
   };
 
   const getVal = (label, val) => {
